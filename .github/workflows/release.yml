@@ -26,16 +26,6 @@ jobs:
         with:
           dotnet-version: 5.0.100
 
-      - name: Setup .NET 6.0
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: "6.0.x"
-          include-prerelease: true
-
-      - name: Prepare AOT workload
-        run: |
-          dotnet workload install wasm-tools
-
       - uses: actions/setup-node@v1
         with:
           node-version: "10.x"
@@ -58,6 +48,16 @@ jobs:
           name: package
           path: publish/
           retention-days: 5
+
+      - name: Setup .NET 6.0
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "6.0.x"
+          include-prerelease: true
+
+      - name: Prepare AOT workload
+        run: |
+          dotnet workload install wasm-tools
 
       - name: Publish Docs 🎉
         run: |
